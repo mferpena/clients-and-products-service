@@ -2,6 +2,7 @@ package com.mferpena.infrastructure.secondary.persistence.mappers;
 
 import com.mferpena.core.domain.models.Client;
 import com.mferpena.core.domain.models.CustomerDetail;
+import com.mferpena.core.domain.models.UserInfo;
 import com.mferpena.infrastructure.secondary.persistence.entities.ClientEntity;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -30,4 +31,7 @@ public interface ClientMapper {
 
         return fullName;
     }
+
+    @Mapping(target = "fullName", source = ".", qualifiedByName = "fullNameMapper")
+    UserInfo toUserInfo(ClientEntity clientEntity);
 }

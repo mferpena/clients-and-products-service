@@ -2,6 +2,7 @@ package com.mferpena.infrastructure.secondary.persistence;
 
 import com.mferpena.core.domain.models.Client;
 import com.mferpena.core.domain.models.CustomerDetail;
+import com.mferpena.core.domain.models.UserInfo;
 import com.mferpena.core.port.ClientPersistencePort;
 import com.mferpena.infrastructure.secondary.persistence.entities.ClientEntity;
 import com.mferpena.infrastructure.secondary.persistence.mappers.ClientMapper;
@@ -44,5 +45,16 @@ public class ClientPersistenceImpl implements ClientPersistencePort {
     @Override
     public void update(Client existClient) {
         clientRepository.save(clientMapper.toDto(existClient));
+    }
+
+    @Override
+    public UserInfo getById(Long id) {
+        ClientEntity clientEntity = clientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Client not found with ID: " + id));
+        return clientMapper.toUserInfo(clientEntity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
     }
 }

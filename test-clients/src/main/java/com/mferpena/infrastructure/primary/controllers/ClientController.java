@@ -29,6 +29,17 @@ public class ClientController {
         return ResponseEntity.ok(clientUseCase.listClient());
     }
 
+    @DeleteMapping
+    public ResponseEntity<?> deleteById(@RequestParam Long id) {
+        clientUseCase.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("find-by-id")
+    public ResponseEntity<?> getById(@RequestParam Long id) {
+        return ResponseEntity.ok(clientUseCase.getById(id));
+    }
+
     @PutMapping
     public ResponseEntity<?> updateClient(@Valid @RequestBody UpdateClientDto updateClientDto) {
         clientUseCase.updateClient(clientDtoMapper.toDomain(updateClientDto));

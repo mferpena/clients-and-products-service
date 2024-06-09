@@ -3,6 +3,7 @@ package com.mferpena.core.services;
 import com.mferpena.core.ClientUseCase;
 import com.mferpena.core.domain.models.Client;
 import com.mferpena.core.domain.models.CustomerDetail;
+import com.mferpena.core.domain.models.UserInfo;
 import com.mferpena.core.port.ClientPersistencePort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,15 @@ public class ClientServiceImpl implements ClientUseCase {
         existClient.setPaternalLastName(client.getPaternalLastName());
         existClient.setMaternalLastName(client.getMaternalLastName());
         clientPersistencePort.update(existClient);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        clientPersistencePort.deleteById(id);
+    }
+
+    @Override
+    public UserInfo getById(Long id) {
+        return clientPersistencePort.getById(id);
     }
 }

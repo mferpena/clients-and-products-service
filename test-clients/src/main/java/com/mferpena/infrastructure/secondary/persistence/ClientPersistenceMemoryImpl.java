@@ -2,6 +2,7 @@ package com.mferpena.infrastructure.secondary.persistence;
 
 import com.mferpena.core.domain.models.Client;
 import com.mferpena.core.domain.models.CustomerDetail;
+import com.mferpena.core.domain.models.UserInfo;
 import com.mferpena.core.port.ClientPersistencePort;
 import com.mferpena.infrastructure.secondary.persistence.entities.ClientEntity;
 import com.mferpena.infrastructure.secondary.persistence.mappers.ClientMapper;
@@ -66,4 +67,15 @@ public class ClientPersistenceMemoryImpl implements ClientPersistencePort {
         Optional.ofNullable(client.getPaternalLastName()).ifPresent(existingClientEntity::setPaternalLastName);
         Optional.ofNullable(client.getMaternalLastName()).ifPresent(existingClientEntity::setMaternalLastName);
     }
+
+    @Override
+    public UserInfo getById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
 }
